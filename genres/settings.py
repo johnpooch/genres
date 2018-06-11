@@ -25,7 +25,7 @@ SECRET_KEY = 'yxa4y+ip7q#l#e&ikuq$)nf7%icgfexcti4o64wjimu#-(wk-w'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['genres-johnpooch.c9users.io']
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'home',
 ]
 
 MIDDLEWARE = [
