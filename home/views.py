@@ -2,8 +2,25 @@ from django.shortcuts import render
 
 import bs4 as bs
 from urllib.request import urlopen
+import string
+import random
 
 def get_index(request): 
+    
+    # valid_list_elements = []
+
+    # sauce = urlopen("https://en.wikipedia.org/wiki/List_of_alternative_rock_artists").read()
+    # soup = bs.BeautifulSoup(sauce, 'lxml')
+    
+    # div = soup.find_all('div', {'class':['div-col', 'columns', 'column-width']})
+    # for div in div:
+    #     li = div.find_all('li')
+    #     for li in li: 
+    #         print(li.string)
+    #         if(li.string != 'None'):
+    #             for a in li.find_all('a', href=True):
+    #                 print (a['href'])
+
 
     # sauce = urlopen("https://en.wikipedia.org/wiki/The_Beatles").read()
     sauce = urlopen("https://en.wikipedia.org/wiki/Nirvana_(band)").read()

@@ -1,15 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Welcome!</h1>
-    
-    <h1> {{ band_name }} </h1>
+
+{% extends 'home/base.html' %}
+{% block content %}
+
+    <h3> {{ band_name }} </h3>
     
     <img src="{{ cover_link }}"></img>
     
@@ -19,9 +12,7 @@
             <input type = "text" name = "data">
             <input type = "submit" name = "check" value = "Submit"><br>
         </form>
-        <!--<li> {{ genre }} </li>-->
     </ul>
     {% endfor %}
-    
-</body>
-</html>
+
+{% endblock content %}
