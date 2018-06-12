@@ -8,5 +8,20 @@
 </head>
 <body>
     <h1>Welcome!</h1>
+    
+    <h1> {{ band_name }} </h1>
+    
+    <img src="{{ cover_link }}"></img>
+    
+    {% for genre in genres %}
+    <ul>
+        <form method = "post" action = "">
+            <input type = "text" name = "data">
+            <input type = "submit" name = "check" value = "Submit"><br>
+        </form>
+        <!--<li> {{ genre }} </li>-->
+    </ul>
+    {% endfor %}
+    
 </body>
 </html>
