@@ -1,32 +1,26 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 import bs4 as bs
 from urllib.request import urlopen
 import string
 import random
 
-def get_index(request): 
+url_list = [
+    "https://en.wikipedia.org/wiki/The_Beatles", 
+    "https://en.wikipedia.org/wiki/Nirvana_(band)", 
+    "https://en.wikipedia.org/wiki/Queens_of_the_Stone_Age",
+    "https://en.wikipedia.org/wiki/Led_Zeppelin",
+    "https://en.wikipedia.org/wiki/Arctic_Monkeys",
+    "https://en.wikipedia.org/wiki/Queen_(band)",
+    "https://en.wikipedia.org/wiki/Sex_Pistols",
+    "https://en.wikipedia.org/wiki/The_Fall_(band)",
+    "https://en.wikipedia.org/wiki/Gorillaz",
+    "https://en.wikipedia.org/wiki/Metallica",
+    ]
     
-    # valid_list_elements = []
+def scrape_band_from_wiki():
+    sauce = urlopen(random.choice(url_list)).read()
 
-    # sauce = urlopen("https://en.wikipedia.org/wiki/List_of_alternative_rock_artists").read()
-    # soup = bs.BeautifulSoup(sauce, 'lxml')
-    
-    # div = soup.find_all('div', {'class':['div-col', 'columns', 'column-width']})
-    # for div in div:
-    #     li = div.find_all('li')
-    #     for li in li: 
-    #         print(li.string)
-    #         if(li.string != 'None'):
-    #             for a in li.find_all('a', href=True):
-    #                 print (a['href'])
-
-
-    # sauce = urlopen("https://en.wikipedia.org/wiki/The_Beatles").read()
-    sauce = urlopen("https://en.wikipedia.org/wiki/Nirvana_(band)").read()
-    # sauce = urlopen("https://en.wikipedia.org/wiki/Queens_of_the_Stone_Age").read()
-    # sauce = urlopen("https://en.wikipedia.org/wiki/Kyuss").read()
-    
     soup = bs.BeautifulSoup(sauce, 'lxml')
     band_name = soup.find('h1')
     
@@ -43,9 +37,15 @@ def get_index(request):
                 genre_row = tr
     
     genres = [i.text for i in genre_row.find_all('a')]
+    return {"band_name": band_name.text, "cover_link": cover_link, "genres": genres}
+
+def get_index(request): 
+    band_dictionary = scrape_band_from_wiki()
+    return render(request, "home/index.html", band_dictionary)
     
-    print(band_name.text)
-    print(cover_link)
-    print(genres)
-    
-    return render(request, "home/index.html", {"band_name": band_name.text, "cover_link": cover_link, "genres": genres})
+
+def check_answer(request): 
+    print(request.GET['answer[0]'])
+    print(request.GET['right_answer[0]'])
+
+    return redirect("/")
